@@ -1,9 +1,11 @@
+package COM;
+
 public class Cell implements ColorfulText {
 
     char type;
     int userNumber;
 
-    public Cell(int userNumber) {
+    Cell(int userNumber) {
         this.userNumber = userNumber;
         if (userNumber == -1)
             type = empty;
@@ -11,9 +13,26 @@ public class Cell implements ColorfulText {
             type = users[userNumber];
     }
 
-    public void set(Cell x) {
-        this.type = x.type;
-        this.userNumber = x.userNumber;
+    char getType() {
+        return type;
+    }
+
+    String getColor() {
+        if (userNumber == 1)
+            return ANSI_BLUE;
+        else if (userNumber == 0)
+            return ANSI_RED;
+        else if (userNumber == -1)
+            return ANSI_GREEN;
+        else if (userNumber == 2)
+            return ANSI_YELLOW;
+        else if (userNumber == 3)
+            return ANSI_PURPLE;
+        return ANSI_CYAN;
+    }
+
+    void print() {
+        System.out.print(getColor() + " " + type + ANSI_RESET);
     }
 
     @Override

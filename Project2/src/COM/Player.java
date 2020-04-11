@@ -1,29 +1,33 @@
-public abstract class Player {
-    protected Cell playerCell;
-    private boolean isWinner;
-    protected int id;
+package COM;
 
-    public Player(int id) {
+import java.util.Scanner;
+
+public abstract class Player {
+    private Cell playerCell;
+    private boolean isWinner;
+    private int id;
+
+    Player(int id) {
         this.id = id;
         isWinner = false;
         playerCell = new Cell(id);
     }
 
-    public Cell getPlayerCell() {
+    public int getId() {
+        return id;
+    }
+
+    Cell getPlayerCell() {
         return playerCell;
     }
 
-    public void setWinner(boolean winner) {
-        isWinner = winner;
+    void setWinner() {
+        isWinner = true;
     }
 
-    public boolean isWinner() {
+    boolean isWinner() {
         return isWinner;
     }
 
-    public void setPlayerCell(Cell playerCell) {
-        this.playerCell = playerCell;
-    }
-
-    public abstract void move();
+    public abstract boolean move(Game game, Scanner scanner);
 }

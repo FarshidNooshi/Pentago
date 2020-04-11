@@ -1,15 +1,16 @@
+package COM;
+
 import java.util.Scanner;
 
-public class Game implements ColorfulText{
+public class Game implements ColorfulText {
 
     private int numberOfPlayers;
-    private boolean isMultiMode;
     private Player[] player;
     private Board board;
 
-    public Game(int numberOfPlayers, boolean isMultiMode) {
+    Game(int numberOfPlayers, boolean isMultiMode) {
+        board = new Board();
         this.numberOfPlayers = numberOfPlayers;
-        this.isMultiMode = isMultiMode;
         player = new Player[numberOfPlayers];
         if (!isMultiMode)
             player[0] = new Computer(0);
@@ -19,31 +20,32 @@ public class Game implements ColorfulText{
             player[i] = new Human(i);
     }
 
-    public Board getBoard() {
+    Board getBoard() {
         return board;
     }
 
-    public Player getPlayer(int id) {
+    Player getPlayer(int id) {
         return this.player[id];
     }
 
-    public void setPlayer(int id, Player player) {
-        this.player[id] = player;
+    int getNumberOfPlayers() {
+        return numberOfPlayers;
     }
 
-    public void start() {
-        int ptr = 0;
-        for (int i = 0; i < 36 && !board.hasWinner();i ++) {
+    void start(Scanner scanner) {
+        for (int i = 0, ptr = 0; i < 36 && !board.hasWinner(this); i++) {
             clr();
-            board.print(true);
-            player[ptr++ % numberOfPlayers].move();
+            board.print(this);
+            if (!player[ptr++ % numberOfPlayers].move(this, scanner))
+                ptr--;
+            ptr %= numberOfPlayers;
         }
         clr();
-        board.print(false);
-        this.end();
+        board.print(this);
+        end();
     }
 
-    private void clr() {
+    void clr() {
         for (int i = 0; i < 25; i++)
             System.out.println();
     }
@@ -51,10 +53,9 @@ public class Game implements ColorfulText{
     private void end() {
         System.out.println(ANSI_CYAN + "List of Players" + ANSI_RESET);
         for (int i = 0; i < numberOfPlayers; i++) {
-            System.out.print(player[i].isWinner() ? ANSI_YELLOW : ANSI_GREEN);
-            System.out.print("Player " + (i + 1) + " ");
+            System.out.print(player[i].getPlayerCell().getColor() + "Player " + (i + 1) + " ");
             if (player[i].isWinner())
-                System.out.print(winner);
+                System.out.print(ANSI_YELLOW + winner);
             System.out.println(ANSI_RESET);
         }
     }

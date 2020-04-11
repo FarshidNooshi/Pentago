@@ -1,3 +1,5 @@
+package COM;
+
 public class SubBoard {
     private Cell[][] subBoard;
 
@@ -8,41 +10,41 @@ public class SubBoard {
                 subBoard[i][j] = new Cell(-1);
     }
 
-    public void rotateClockwise() {
+    void rotateClockwise() {
         SubBoard tmp = new SubBoard();
-        for (int i =0 ; i < 3; i++)
+        for (int i = 0; i < 3; i++)
             for (int j = 0; j < 3; j++)
-                tmp.subBoard[i][j].set(this.get(i, j));
-        subBoard[0][2].set(tmp.subBoard[0][0]);
-        subBoard[1][2].set(tmp.subBoard[0][1]);
-        subBoard[2][2].set(tmp.subBoard[0][2]);
-        subBoard[0][1].set(tmp.subBoard[1][0]);
-        subBoard[2][1].set(tmp.subBoard[1][2]);
-        subBoard[0][0].set(tmp.subBoard[2][0]);
-        subBoard[1][0].set(tmp.subBoard[2][1]);
-        subBoard[2][0].set(tmp.subBoard[2][2]);
+                tmp.subBoard[i][j] = new Cell(this.get(i, j).userNumber);
+        this.setXY(0, 2, tmp.subBoard[0][0]);
+        this.setXY(0, 1, tmp.subBoard[1][0]);
+        this.setXY(0, 0, tmp.subBoard[2][0]);
+        this.setXY(1, 2, tmp.subBoard[0][1]);
+        this.setXY(1, 0, tmp.subBoard[2][1]);
+        this.setXY(2, 2, tmp.subBoard[0][2]);
+        this.setXY(2, 1, tmp.subBoard[1][2]);
+        this.setXY(2, 0, tmp.subBoard[2][2]);
     }
 
-    public void rotateCounterClockwise() {
+    void rotateCounterClockwise() {
         SubBoard tmp = new SubBoard();
-        for (int i =0 ; i < 3; i++)
+        for (int i = 0; i < 3; i++)
             for (int j = 0; j < 3; j++)
-                tmp.subBoard[i][j].set(this.get(i, j));
-        subBoard[0][0].set(tmp.subBoard[0][2]);
-        subBoard[1][0].set(tmp.subBoard[0][1]);
-        subBoard[2][0].set(tmp.subBoard[0][0]);
-        subBoard[0][1].set(tmp.subBoard[1][2]);
-        subBoard[2][1].set(tmp.subBoard[1][0]);
-        subBoard[0][2].set(tmp.subBoard[2][2]);
-        subBoard[1][2].set(tmp.subBoard[2][1]);
-        subBoard[2][2].set(tmp.subBoard[2][0]);
+                tmp.subBoard[i][j] = new Cell(this.get(i, j).userNumber);
+        this.setXY(0, 0, tmp.subBoard[0][2]);
+        this.setXY(1, 0, tmp.subBoard[0][1]);
+        this.setXY(2, 0, tmp.subBoard[0][0]);
+        this.setXY(0, 1, tmp.subBoard[1][2]);
+        this.setXY(2, 1, tmp.subBoard[1][0]);
+        this.setXY(0, 2, tmp.subBoard[2][2]);
+        this.setXY(1, 2, tmp.subBoard[2][1]);
+        this.setXY(2, 2, tmp.subBoard[2][0]);
     }
 
-    public Cell get(int x, int y) {
+    Cell get(int x, int y) {
         return subBoard[x][y];
     }
 
-    public void setXY(int x, int y, Cell tmp) {
+    void setXY(int x, int y, Cell tmp) {
         subBoard[x][y] = tmp;
     }
 }
