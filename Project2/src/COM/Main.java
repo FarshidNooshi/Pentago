@@ -1,9 +1,14 @@
+// In The Name Of GOD
 package COM;
 
 import java.util.Scanner;
 
 public class Main implements ColorfulText {
 
+    /**
+     *
+     * the main method of the project that runs the game.
+     */
     public static void main(String[] args) {
         System.out.println(ANSI_BLUE + "HELLO");
         System.out.println("Welcome to the Pentago game\nI'm Farshid, Developer of this app\n");

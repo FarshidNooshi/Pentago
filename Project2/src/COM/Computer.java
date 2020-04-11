@@ -1,6 +1,12 @@
+// In The Name Of GOD
 package COM;
 
 import java.util.Scanner;
+
+/**
+ * this class extends player class for playing as a computer
+ * my computer class uses a greedy algorithm to win
+ */
 
 public class Computer extends Player {
 
@@ -8,6 +14,15 @@ public class Computer extends Player {
         super(x);
     }
 
+    /**
+     * the Greedy algorithm is as follows :
+     * checking for free spaces in a row to win and if it finds some it will rotate an inappropriate subBoard and sellecting that cell for itself
+     * if it doesn't find a good row it will search for a good column
+     * after these two it will select a random non occupied place in the table
+     * @param game is the actual game
+     * @param scanner is the scanner for getting the input
+     * @return true always cuz the move is always successful
+     */
     @Override
     public boolean move(Game game, Scanner scanner) {
         for (int i = 0; i < 6; i++) {

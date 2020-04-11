@@ -1,10 +1,19 @@
+// In The Name Of GOD
 package COM;
+
+/**
+ * it's the cell class and is here for knowing each cells information.
+ */
 
 public class Cell implements ColorfulText {
 
     char type;
     int userNumber;
 
+    /**
+     * the constructor of a cell
+     * @param userNumber say's that this cell belongs to which player. if it's -1 then it belongs to no one.
+     */
     Cell(int userNumber) {
         this.userNumber = userNumber;
         if (userNumber == -1)
@@ -13,10 +22,19 @@ public class Cell implements ColorfulText {
             type = users[userNumber];
     }
 
+
+    /**
+     *
+     * @return the type of the cell using unicode texts in ColorfulText interface.
+     */
     char getType() {
         return type;
     }
 
+    /**
+     *
+     * @return appropriate color for the cell. each player has a unique color and empty cells are green btw.
+     */
     String getColor() {
         if (userNumber == 1)
             return ANSI_BLUE;
@@ -31,10 +49,18 @@ public class Cell implements ColorfulText {
         return ANSI_CYAN;
     }
 
+    /**
+     * this method simply prints a cell in it's appropriate color
+     */
     void print() {
         System.out.print(getColor() + " " + type + ANSI_RESET);
     }
 
+    /**
+     *
+     * @param obj is to checking for equality with
+     * @return true if both objects are equal
+     */
     @Override
     public boolean equals(Object obj) {
         if (this == obj) return true;

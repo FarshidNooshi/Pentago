@@ -1,13 +1,24 @@
+// In The Name Of GOD
 package COM;
 
 import java.util.Scanner;
 
+/**
+ * the human class for the user player class who's player is a human
+ */
 public class Human extends Player implements ColorfulText {
 
     Human(int x) {
         super(x);
     }
 
+    /**
+     * this method will interact with user to play
+     * the color that prints is the unique color of the player
+     * @param game is the actual game
+     * @param scanner is the scanner for getting the input
+     * @return true if the move was successful
+     */
     @Override
     public boolean move(Game game, Scanner scanner) {
         System.out.print(this.getPlayerCell().getColor() + "Please enter a cell to fill for your user: ");
