@@ -3,7 +3,6 @@ package COM;
 import java.util.Scanner;
 
 public class Main implements ColorfulText {
-    private static Game game;
 
     public static void main(String[] args) {
         System.out.println(ANSI_BLUE + "HELLO");
@@ -14,7 +13,7 @@ public class Main implements ColorfulText {
         System.out.println("Now select if you want to play against computer or not? [y]yes [n]no");
         boolean tmp2 = (boolean)(scanner.next().charAt(0) == 'n');
         System.out.println("In this game sub tables are number from 1 to 4 clockwise starting from top left." + ANSI_RESET);
-        game = new Game(tmp1, tmp2);
+        Game game = new Game(tmp1, tmp2);
         game.start(scanner);
     }
 }

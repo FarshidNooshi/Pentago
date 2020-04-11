@@ -1,6 +1,6 @@
 package COM;
 
-public class SubBoard {
+class SubBoard {
     private Cell[][] subBoard;
 
     SubBoard() {
